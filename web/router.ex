@@ -16,7 +16,7 @@ defmodule Daily.Router do
   scope "/", Daily do
     pipe_through :browser # Use the default browser stack
 
-    get "/", SongController, :index
+    resources "/", SongController, only: [:index, :create]
   end
 
   # Other scopes may use custom stacks.
