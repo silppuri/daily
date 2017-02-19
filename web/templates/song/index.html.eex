@@ -1,4 +1,7 @@
 <h1>PASTE A YOUTUBE LINK TO DAILY SONG. IT WILL PLAY AT 11:15. SHARP!</h1>
-<%= form_tag("/", method: :post) %>
+<%= form_tag("/", method: :post) do %>
   <input name="url" type="text" placeholder="https://www.youtube.com/watch?v=_Qz5yhNAZps" />
   <input type="submit" value="OK!" />
+<%= end %>
+
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="<%= List.first(@urls) %>" frameborder="0"></iframe>

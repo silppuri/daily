@@ -4,5 +4,3 @@
 // to also remove its path from "config.paths.watched".
 import socket from "./socket";
 
-console.log(socket);
-

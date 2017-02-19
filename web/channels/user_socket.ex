@@ -2,7 +2,7 @@ defmodule Daily.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", Daily.RoomChannel
+  channel "daily:*", Daily.DailyRoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
