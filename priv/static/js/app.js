@@ -1432,6 +1432,36 @@ var _socket = require("./socket");
 var _socket2 = _interopRequireDefault(_socket);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var channel = _socket2.default.channel("daily:lobby", {});
+
+channel.on("play", playVideo);
+
+channel.join().receive("ok", function (resp) {
+  console.log("Joined successfully", resp);
+}).receive("error", function (resp) {
+  console.log("Unable to join", resp);
+});
+
+function playVideo(videoId) {
+  new YT.Player("player", {
+    height: "390",
+    width: "640",
+    videoId: videoId,
+    events: { onReady: onPlayerReady }
+  });
+}
+
+function onPlayerReady(event) {
+  event.target.playVideo();
+}
+
+(function injectYoutubeAPI() {
+  var tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName("script")[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+})();
 });
 
 require.register("web/static/js/socket.js", function(exports, require, module) {
@@ -1444,60 +1474,7 @@ Object.defineProperty(exports, "__esModule", {
 var _phoenix = require("phoenix");
 
 var socket = new _phoenix.Socket("/socket", { params: { token: window.userToken } });
-
-// When you connect, you'll often need to authenticate the client.
-// For example, imagine you have an authentication plug, `MyAuth`,
-// which authenticates the session and assigns a `:current_user`.
-// If the current user exists you can assign the user's token in
-// the connection for use in the layout.
-//
-// In your "web/router.ex":
-//
-//     pipeline :browser do
-//       ...
-//       plug MyAuth
-//       plug :put_user_token
-//     end
-//
-//     defp put_user_token(conn, _) do
-//       if current_user = conn.assigns[:current_user] do
-//         token = Phoenix.Token.sign(conn, "user socket", current_user.id)
-//         assign(conn, :user_token, token)
-//       else
-//         conn
-//       end
-//     end
-//
-// Now you need to pass this token to JavaScript. You can do so
-// inside a script tag in "web/templates/layout/app.html.eex":
-//
-//     <script>window.userToken = "<%= assigns[:user_token] %>";</script>
-//
-// You will need to verify the user token in the "connect/2" function
-// in "web/channels/user_socket.ex":
-//
-//     def connect(%{"token" => token}, socket) do
-//       # max_age: 1209600 is equivalent to two weeks in seconds
-//       case Phoenix.Token.verify(socket, "user socket", token, max_age: 1209600) do
-//         {:ok, user_id} ->
-//           {:ok, assign(socket, :user, user_id)}
-//         {:error, reason} ->
-//           :error
-//       end
-//     end
-//
-// Finally, pass the token on connect as below. Or remove it
-// from connect if you don't care about authentication.
 socket.connect();
-
-// Now that you are connected, you can join channels with a topic:
-var channel = socket.channel("daily:lobby", {});
-
-channel.join().receive("ok", function (resp) {
-  console.log("Joined successfully", resp);
-}).receive("error", function (resp) {
-  console.log("Unable to join", resp);
-});
 
 exports.default = socket;
 });
