@@ -10,7 +10,8 @@ defmodule Daily.SongController do
   end
 
   def create(conn, %{"url" => url}) do
-    changeset = Song.changeset(%Song{}, %{url: url})
+    video_id = String.slice(URI.parse(url).path, 1..-1)
+    changeset = Song.changeset(%Song{}, %{url: url, video_id: video_id})
     case Repo.insert(changeset) do
       {:ok, _url} ->
         conn

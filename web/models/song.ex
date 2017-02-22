@@ -4,6 +4,7 @@ defmodule Daily.Song do
 
   schema "songs" do
     field :url, :string
+    field :video_id, :string
     timestamps()
   end
 
@@ -12,8 +13,8 @@ defmodule Daily.Song do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:url])
-    |> validate_required([:url])
+    |> cast(params, [:url, :video_id])
+    |> validate_required([:url, :video_id])
     |> validate_change(:url, &Validation.uri(&1, &2))
   end
 end

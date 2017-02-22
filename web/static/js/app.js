@@ -2,7 +2,10 @@ import socket from "./socket";
 
 let channel = socket.channel("daily:lobby", {});
 
-channel.on("play", playVideo);
+channel.on("play", data => {
+  console.log(data);
+  playVideo(data.videoId);
+});
 
 channel.join().receive("ok", resp => {
   console.log("Joined successfully", resp);
@@ -11,7 +14,7 @@ channel.join().receive("ok", resp => {
 });
 
 function playVideo(videoId) {
-  new YT.Player("player", {
+  return new YT.Player("player", {
     height: "390",
     width: "640",
     videoId: videoId,

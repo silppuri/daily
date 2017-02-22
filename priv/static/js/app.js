@@ -1435,7 +1435,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var channel = _socket2.default.channel("daily:lobby", {});
 
-channel.on("play", playVideo);
+channel.on("play", function (data) {
+  console.log(data);
+  playVideo(data.videoId);
+});
 
 channel.join().receive("ok", function (resp) {
   console.log("Joined successfully", resp);
@@ -1444,7 +1447,7 @@ channel.join().receive("ok", function (resp) {
 });
 
 function playVideo(videoId) {
-  new YT.Player("player", {
+  return new YT.Player("player", {
     height: "390",
     width: "640",
     videoId: videoId,
