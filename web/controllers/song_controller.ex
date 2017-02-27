@@ -1,5 +1,3 @@
-require Logger
-
 defmodule Daily.SongController do
   use Daily.Web, :controller
   alias Daily.Song
@@ -10,8 +8,7 @@ defmodule Daily.SongController do
   end
 
   def create(conn, %{"url" => url}) do
-    video_id = String.slice(URI.parse(url).path, 1..-1)
-    changeset = Song.changeset(%Song{}, %{url: url, video_id: video_id})
+    changeset = Song.changeset(%Song{}, Youtube.parse(url))
     case Repo.insert(changeset) do
       {:ok, _url} ->
         conn

@@ -5,8 +5,7 @@ defmodule Daily.DailyRoomChannel do
   import Ecto.Query
 
   def join("daily:lobby", message, socket) do
-    video_ids = Daily.Repo.one(from song in Daily.Song, order_by: [desc: song.inserted_at], limit: 1, select: [song.video_id])
-    :timer.send_after(0, {:play, List.first(video_ids)})
+    :timer.send_after(0, {:pending})
     {:ok, socket}
   end
 
@@ -14,8 +13,10 @@ defmodule Daily.DailyRoomChannel do
     {:error, %{reason: "unauthorized"}}
   end
 
-  def handle_info({:play, videoId}, socket) do
-    Quantum.add_job("* * * * *", fn -> push socket, "play", %{videoId: videoId} end)
+  def handle_info({:pending}, socket) do
+    Quantum.add_job("15 11 * * *", fn ->
+      push socket, "play", %{videoId: Daily.Song.latest_video_id()}
+    end)
     {:noreply, socket}
   end
 
