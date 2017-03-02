@@ -1,5 +1,14 @@
 # Daily
 
+## What is this?
+We have a daily process at Netmedi, where a song (~3min long) starts to play at 11:15. During the song everybody has time to prepare themselves to the daily: writing post-its, contemplate existence and such...
+
+Todo:
+- [ ] Make multiple rooms for different daily songs, it's easy to troll us atm.
+- [ ] Find a way to start playing a video on a inactive tab.
+
+## Usage
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
