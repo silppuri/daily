@@ -22,7 +22,14 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :quantum, Daily.Application,
+config :quantum, :your_app,
+  cron: [
+    # Every minute
+    "15 11 * * 1-5": fn ->
+      Daily.Endpoint.broadcast("daily:lobby", "play", %{videoId: Daily.Song.latest_video_id()})
+    end
+  ]
+config :quantum,
   timezone: "Europe/Helsinki"
 
 # Import environment specific config. This must remain at the bottom
