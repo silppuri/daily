@@ -2,34 +2,25 @@ import socket from "./socket";
 
 let channel = socket.channel("daily:lobby", {});
 
-channel.on("play", data => {
-  console.log(data);
-  playVideo(data.videoId);
-});
-
 channel.join().receive("ok", resp => {
-  console.log("Joined successfully", resp);
+  console.log("Joined");
 }).receive("error", resp => {
-  console.log("Unable to join", resp);
+  console.error("Unable to join", resp);
 });
 
-function playVideo(videoId) {
-  return new YT.Player("player", {
-    height: "390",
-    width: "640",
-    videoId: videoId,
-    events: { onReady: onPlayerReady }
-  });
-}
+const loadVideo = player => ({ videoId }) => {
+  player.loadVideoById(videoId);
+  player.playVideo();
+};
 
 function onPlayerReady(event) {
   event.target.playVideo();
 }
 
-(function injectYoutubeAPI() {
-  let tag = document.createElement("script");
-  tag.src = "https://www.youtube.com/iframe_api";
-  let firstScriptTag = document.getElementsByTagName("script")[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-})();
+function onYouTubeIframeAPIReady() {
+  let player = new YT.Player("player", { height: "390", width: "640" });
+  channel.on("play", loadVideo(player));
+}
+
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
