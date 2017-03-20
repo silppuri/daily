@@ -24,7 +24,6 @@ config :logger, :console,
 
 config :quantum, :your_app,
   cron: [
-    # Every minute
     "15 11 * * 1-5": fn ->
       Daily.Endpoint.broadcast("daily:lobby", "play", %{videoId: Daily.Song.latest_video_id()})
     end

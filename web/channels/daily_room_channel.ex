@@ -2,9 +2,8 @@ require Logger
 
 defmodule Daily.DailyRoomChannel do
   use Phoenix.Channel
-  import Ecto.Query
 
-  def join("daily:lobby", message, socket) do
+  def join("daily:lobby", _message, socket) do
     {:ok, socket}
   end
 
@@ -13,7 +12,7 @@ defmodule Daily.DailyRoomChannel do
     {:noreply, socket}
   end
 
-  def terminate(reason, socket) do
+  def terminate(_reason, _socket) do
     :ok
   end
 end

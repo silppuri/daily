@@ -14,7 +14,7 @@ defmodule Daily.SongController do
         conn
         |> put_flash(:info, "Successfully set the #{url} as daily song!")
         |> redirect(to: song_path(conn, :index))
-      {:error, changeset} ->
+      {:error} ->
         conn
         |> put_flash(:error, "Could not set the #{url} as daily song!")
         |> redirect(to: song_path(conn, :index))
