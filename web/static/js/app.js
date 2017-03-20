@@ -13,10 +13,6 @@ const loadVideo = player => ({ videoId }) => {
   player.playVideo();
 };
 
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
-
 function onYouTubeIframeAPIReady() {
   let player = new YT.Player("player", { height: "390", width: "640" });
   channel.on("play", loadVideo(player));
