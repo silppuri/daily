@@ -1,14 +1,13 @@
 defmodule Daily.SongController do
   use Daily.Web, :controller
-  alias Daily.Song
 
   def index(conn, _params) do
-    urls = Repo.one(from song in Song, order_by: [desc: song.inserted_at], limit: 1, select: [song.url])
+    urls = Repo.one(from song in Daily.Song, order_by: [desc: song.inserted_at], limit: 1, select: [song.url])
     render(conn, "index.html", urls: urls)
   end
 
   def create(conn, %{"url" => url}) do
-    changeset = Song.changeset(%Song{}, Youtube.parse(url))
+    changeset = Daily.Song.changeset(%Daily.Song{}, Youtube.parse(url))
     case Repo.insert(changeset) do
       {:ok, _url} ->
         conn

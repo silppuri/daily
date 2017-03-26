@@ -1,0 +1,9 @@
+<h1>HERE ARE ALL ROOMS</h1>
+<ul>
+  <%= for room <- @rooms do %>
+  <li>
+    <h2><%= room.name %></h2>
+    <%= link("enter this daily", to: room_path(@conn, :show, room.id)) %>
+  </li>
+  <% end %>
+</ul>
