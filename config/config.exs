@@ -10,10 +10,10 @@ config :daily,
   ecto_repos: [Daily.Repo]
 
 # Configures the endpoint
-config :daily, Daily.Endpoint,
+config :daily, DailyWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "ThtGpZIQmZXO9slg7Vc9ukc0ZCQP3WcZFFK71IGw9NdBOaUuqVENquuncRUr2N1/",
-  render_errors: [view: Daily.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: DailyWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Daily.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

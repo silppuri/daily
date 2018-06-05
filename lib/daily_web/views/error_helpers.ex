@@ -1,4 +1,4 @@
-defmodule Daily.ErrorHelpers do
+defmodule DailyWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """

@@ -1,5 +1,5 @@
 defmodule Daily.PageControllerTest do
-  use Daily.ConnCase
+  use DailyWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

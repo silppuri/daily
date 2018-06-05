@@ -1,6 +1,6 @@
 require Logger
 
-defmodule Daily.DailyRoomChannel do
+defmodule DailyWeb.DailyRoomChannel do
   use Phoenix.Channel
 
   def join("daily:lobby", _message, socket) do

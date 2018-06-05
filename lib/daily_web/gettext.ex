@@ -1,4 +1,4 @@
-defmodule Daily.Gettext do
+defmodule DailyWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 

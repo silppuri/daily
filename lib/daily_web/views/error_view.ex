@@ -1,4 +1,4 @@
-defmodule Daily.ErrorView do
+defmodule DailyWeb.ErrorView do
   use Daily.Web, :view
 
   def render("404.html", _assigns) do

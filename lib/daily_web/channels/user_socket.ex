@@ -1,4 +1,4 @@
-defmodule Daily.UserSocket do
+defmodule DailyWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels

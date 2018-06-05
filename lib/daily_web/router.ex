@@ -1,4 +1,4 @@
-defmodule Daily.Router do
+defmodule DailyWeb.Router do
   use Daily.Web, :router
 
   pipeline :browser do
@@ -13,7 +13,7 @@ defmodule Daily.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Daily do
+  scope "/", DailyWeb do
     pipe_through :browser # Use the default browser stack
 
     resources "/", SongController, only: [:index, :create]

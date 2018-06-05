@@ -1,4 +1,4 @@
-defmodule Daily.Endpoint do
+defmodule DailyWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :daily
 
   socket "/socket", Daily.UserSocket

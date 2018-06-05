@@ -1,4 +1,4 @@
-defmodule Daily.SongController do
+defmodule DailyWeb.SongController do
   use Daily.Web, :controller
   alias Daily.Song
 

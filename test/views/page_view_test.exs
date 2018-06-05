@@ -1,3 +1,3 @@
 defmodule Daily.PageViewTest do
-  use Daily.ConnCase, async: true
+  use DailyWeb.ConnCase, async: true
 end

@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :daily, Daily.Endpoint,
+config :daily, DailyWeb.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [scheme: "https", host: "daily-song.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],

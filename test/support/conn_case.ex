@@ -1,4 +1,4 @@
-defmodule Daily.ConnCase do
+defmodule DailyWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,10 +25,10 @@ defmodule Daily.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import Daily.Router.Helpers
+      import DailyWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint Daily.Endpoint
+      @endpoint DailyWeb.Endpoint
     end
   end
 
