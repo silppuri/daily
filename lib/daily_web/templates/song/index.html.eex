@@ -3,4 +3,5 @@
   <input name="url" type="text" placeholder="https://www.youtube.com/watch?v=_Qz5yhNAZps" />
   <input type="submit" value="OK!" />
 <%= end %>
+<button type="button" id="play-now">Play NOW!</button>
 <div id="player"></div>
