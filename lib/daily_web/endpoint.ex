@@ -1,7 +1,7 @@
 defmodule DailyWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :daily
 
-  socket "/socket", Daily.UserSocket
+  socket "/socket", DailyWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -38,5 +38,5 @@ defmodule DailyWeb.Endpoint do
     key: "_daily_key",
     signing_salt: "VK742Vej"
 
-  plug Daily.Router
+  plug DailyWeb.Router
 end

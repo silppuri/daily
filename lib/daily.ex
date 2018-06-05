@@ -10,7 +10,7 @@ defmodule Daily do
       # Start the Ecto repository
       supervisor(Daily.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(Daily.Endpoint, []),
+      supervisor(DailyWeb.Endpoint, []),
       # Start your own worker by calling: Daily.Worker.start_link(arg1, arg2, arg3)
       # worker(Daily.Worker, [arg1, arg2, arg3]),
     ]
@@ -23,7 +23,7 @@ defmodule Daily do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    Daily.Endpoint.config_change(changed, removed)
+    DailyWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end
