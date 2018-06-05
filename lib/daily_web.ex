@@ -28,20 +28,20 @@ defmodule Daily.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller
+      use Phoenix.Controller, namespace: DailyWeb
 
       alias Daily.Repo
       import Ecto
       import Ecto.Query
 
-      import Daily.Router.Helpers
-      import Daily.Gettext
+      import DailyWeb.Router.Helpers
+      import DailyWeb.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: "lib/daily_web/templates", namespace: DailyWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -49,9 +49,9 @@ defmodule Daily.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Daily.Router.Helpers
-      import Daily.ErrorHelpers
-      import Daily.Gettext
+      import DailyWeb.Router.Helpers
+      import DailyWeb.ErrorHelpers
+      import DailyWeb.Gettext
     end
   end
 
@@ -68,7 +68,7 @@ defmodule Daily.Web do
       alias Daily.Repo
       import Ecto
       import Ecto.Query
-      import Daily.Gettext
+      import DailyWeb.Gettext
     end
   end
 
